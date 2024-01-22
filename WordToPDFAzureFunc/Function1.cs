@@ -25,7 +25,7 @@ namespace WordToPDFAzureFunc
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestMessage req,
             TraceWriter log)
         {
-            //Gets the input Word document as stream from request
+            //Get the input Word document as stream from request
             Stream stream = req.Content.ReadAsStreamAsync().Result;
             //Loads an existing Word document
             using (WordDocument document = new WordDocument(stream, FormatType.Docx))
