@@ -25,20 +25,20 @@ namespace WordToPDFAzureFunc
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestMessage req,
             TraceWriter log)
         {
-            //Gets the input Word document as stream from request
+            //Gets the input Word document as stream from request.
             Stream stream = req.Content.ReadAsStreamAsync().Result;
-            //Loads an existing Word document
+            //Loads an existing Word document.
             using (WordDocument document = new WordDocument(stream, FormatType.Docx))
             {
                 document.LastParagraph.AppendText("New content");
-                //Creates an instance of the DocToPDFConverter
+                //Creates an instance of the DocToPDFConverter.
                 using (DocIORenderer render = new DocIORenderer())
                 {
                     //Converts Word document into PDF document
                     using (PdfDocument pdfDocument = render.ConvertToPDF(document))
                     {
                         MemoryStream memoryStream = new MemoryStream();
-                        //Saves the PDF file 
+                        //Saves the PDF file.
                         pdfDocument.Save(memoryStream);
                         //Reset the memory stream position
                         memoryStream.Position = 0;
