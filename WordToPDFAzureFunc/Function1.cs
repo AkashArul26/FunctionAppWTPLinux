@@ -30,7 +30,7 @@ namespace WordToPDFAzureFunc
             //Loads an existing Word document
             using (WordDocument document = new WordDocument(stream, FormatType.Docx))
             {
-                document.LastParagraph.AppendText("New content");
+                document.LastParagraph.AppendText("New content : Akash");
                 //Creates an instance of the DocToPDFConverter
                 using (DocIORenderer render = new DocIORenderer())
                 {
